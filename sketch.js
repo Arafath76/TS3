@@ -4,6 +4,7 @@ const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
 
 var engine, world;
+var score=0;
 var holder,polygon,ground;
 var stand1,stand2;
 var polygon;
@@ -68,6 +69,7 @@ function draw() {
  
   //Engine.update(engine);
   text(mouseX + ',' + mouseY, 10, 15);
+  text("SCORE:"+score,750,40);
   textSize(20);
   fill("lightyellow");
   text("Drag the polygon to destroy the blocks",300,30);
@@ -127,4 +129,23 @@ function keyPressed(){
   if(keyCode === 32){
       slingShot.attach(this.polygon);
   }
+}
+async function getBackgroundImg()
+{
+    var response = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
+    var responseJSON = await response.json();
+    var datetime = responseJSON.datetime;
+    var hour = datetime.slice(11,13);
+
+    if(hour>=06 && hour <=18)
+    {
+      background(56,44,44);
+    }
+    else
+    {
+      background(0,03,05);
+    }
+ 
+  
+
 }
